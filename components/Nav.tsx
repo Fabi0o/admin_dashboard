@@ -1,10 +1,6 @@
-import { Cart } from "@/types/carts";
+import { CartProps } from "@/types/carts";
 
-interface Props {
-  allCarts: Cart[];
-}
-
-const Nav: React.FC<Props> = ({ allCarts }: Props) => {
+const Nav: React.FC<CartProps> = ({ allCarts }: CartProps) => {
   return <nav>Hello Admin! There are {allCarts.length} carts</nav>;
 };
 

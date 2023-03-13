@@ -18,8 +18,12 @@ interface Cart {
   userId: number;
 }
 
-interface Props {
+interface DataProps {
   data: { carts: Cart[]; limit: number; skip: number; total: number };
 }
 
-export type { Product, Cart, Props };
+interface CartProps {
+  allCarts: Cart[];
+}
+
+export type { Product, Cart, DataProps, CartProps };
