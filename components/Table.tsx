@@ -5,7 +5,7 @@ const Table: React.FC<CartProps> = ({
   allCarts,
   currentCart,
   setCurrentCart,
-}: CartProps) => {
+}) => {
   const changeCurrentCart = (e: React.MouseEvent<HTMLElement>) => {
     const event = e.target! as HTMLElement;
 

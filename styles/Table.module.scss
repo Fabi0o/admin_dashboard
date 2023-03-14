@@ -7,8 +7,8 @@
 .bodyRow {
   & > * {
     border: 1px solid #dddddd;
-    text-align: left;
     padding: 8px;
+    text-align: left;
   }
   &:nth-child(even) {
     background-color: #dddddd;
@@ -17,6 +17,7 @@
 
 .bodyRow {
   cursor: pointer;
+
   &:hover,
   &.currentCart {
     background-color: rgb(68, 68, 255);
