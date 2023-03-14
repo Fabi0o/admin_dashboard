@@ -7,11 +7,16 @@ import Table from "@/components/Table";
 
 export default function Home({ data }: DataProps) {
   const [allCarts, setAllCarts] = useState(data.carts);
+  const [currentCart, setCurrentCart] = useState(data.carts[0]);
   return (
     <div className={styles.container}>
       <Nav allCarts={allCarts} />
       <div className={styles.content}>
-        <Table allCarts={allCarts} />
+        <Table
+          allCarts={allCarts}
+          currentCart={currentCart}
+          setCurrentCart={setCurrentCart}
+        />
         <Chart />
       </div>
     </div>

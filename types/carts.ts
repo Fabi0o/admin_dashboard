@@ -24,6 +24,8 @@ interface DataProps {
 
 interface CartProps {
   allCarts: Cart[];
+  currentCart?: Cart;
+  setCurrentCart?: React.Dispatch<React.SetStateAction<Cart>>;
 }
 
 export type { Product, Cart, DataProps, CartProps };
