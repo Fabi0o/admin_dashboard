@@ -28,4 +28,8 @@ interface CartProps {
   setCurrentCart?: React.Dispatch<React.SetStateAction<Cart>>;
 }
 
-export type { Product, Cart, DataProps, CartProps };
+interface CurrentCartProps {
+  currentCart: Cart;
+}
+
+export type { Product, Cart, DataProps, CartProps, CurrentCartProps };
