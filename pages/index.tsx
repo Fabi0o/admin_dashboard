@@ -19,7 +19,7 @@ export default function Home({ data }: DataProps) {
           currentCart={currentCart}
           setCurrentCart={setCurrentCart}
         />
-        <Chart currentCart={currentCart} />
+        {currentCart && <Chart currentCart={currentCart} />}
       </div>
     </div>
   );
