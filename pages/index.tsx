@@ -2,7 +2,7 @@ import Nav from "@/components/Nav";
 import styles from "@/styles/Home.module.scss";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { Product, Cart, DataProps } from "@/types/carts";
+import { DataProps } from "@/types/carts";
 import Table from "@/components/Table";
 const Chart = dynamic(() => import("@/components/Chart"), { ssr: false });
 
@@ -15,6 +15,7 @@ export default function Home({ data }: DataProps) {
       <div className={styles.content}>
         <Table
           allCarts={allCarts}
+          setAllCarts={setAllCarts}
           currentCart={currentCart}
           setCurrentCart={setCurrentCart}
         />

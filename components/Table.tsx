@@ -3,6 +3,7 @@ import { CartProps } from "@/types/carts";
 
 const Table: React.FC<CartProps> = ({
   allCarts,
+  setAllCarts,
   currentCart,
   setCurrentCart,
 }) => {
@@ -12,8 +13,20 @@ const Table: React.FC<CartProps> = ({
     setCurrentCart!(allCarts[Number(event.parentElement!.id)]);
   };
 
+  const deleteCurrentCart = () => {
+    const index = allCarts.indexOf(currentCart!);
+    allCarts.splice(index, 1);
+    setAllCarts!(allCarts);
+    setCurrentCart!(allCarts[0]);
+  };
+
   return (
     <div className={styles.container}>
+      <button className={styles.button} onClick={deleteCurrentCart}>
+        Delete Cart
+      </button>
+      <button className={styles.button}>Add Cart</button>
+
       <table className={styles.table}>
         <thead>
           <tr className={styles.headRow}>
