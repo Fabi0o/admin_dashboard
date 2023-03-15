@@ -12,7 +12,6 @@ import {
 } from "recharts";
 
 const Chart: React.FC<CurrentCartProps> = ({ currentCart }) => {
-  console.log(currentCart);
   const data = currentCart.products.map((data) => {
     let newdata = new ChartData(
       `Product ID ${data.id}`,
