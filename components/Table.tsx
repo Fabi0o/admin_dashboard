@@ -1,5 +1,7 @@
 import styles from "@/styles/Table.module.scss";
 import { CartProps } from "@/types/carts";
+import { useState } from "react";
+import NewCartForm from "./NewCartForm";
 
 const Table: React.FC<CartProps> = ({
   allCarts,
@@ -7,6 +9,8 @@ const Table: React.FC<CartProps> = ({
   currentCart,
   setCurrentCart,
 }) => {
+  const [displayForm, setDisplayForm] = useState<boolean>(false);
+
   const changeCurrentCart = (e: React.MouseEvent<HTMLElement>) => {
     const event = e.target! as HTMLElement;
 
@@ -25,7 +29,9 @@ const Table: React.FC<CartProps> = ({
       <button className={styles.button} onClick={deleteCurrentCart}>
         Delete Cart
       </button>
-      <button className={styles.button}>Add Cart</button>
+      <button className={styles.button} onClick={() => setDisplayForm(true)}>
+        Add Cart
+      </button>
 
       <table className={styles.table}>
         <thead>
@@ -57,6 +63,7 @@ const Table: React.FC<CartProps> = ({
           })}
         </tbody>
       </table>
+      {displayForm && <NewCartForm setDisplayForm={setDisplayForm} />}
     </div>
   );
 };
