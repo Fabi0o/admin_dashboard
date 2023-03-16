@@ -30,11 +30,13 @@
 .closeButton {
   text-align: right;
   width: 100%;
+
   & > * {
     background-color: transparent;
     border: none;
     cursor: pointer;
     font-size: 18px;
+
     &:hover {
       color: white;
     }
@@ -55,6 +57,7 @@
   cursor: pointer;
   padding: 0.5rem;
   width: 6rem;
+
   &:hover {
     background-color: white;
     color: rgb(68, 68, 255);

@@ -30,17 +30,21 @@ const NewCartForm: React.FC<Props> = ({ setDisplayForm }) => {
         <div className={styles.closeButton}>
           <button onClick={closeForm}>X</button>
         </div>
+
         <div className={styles.inputContainer}>
           <label htmlFor="userID">User ID</label>
           <input type="number" id="userID" />
         </div>
+
         <div className={styles.inputContainer}>
           <label htmlFor="productID">Product ID</label>
           <input type="number" />
         </div>
+
         <button type="button" className={styles.actionButton}>
           Add Product
         </button>
+
         <button type="submit" className={styles.actionButton}>
           Submit
         </button>

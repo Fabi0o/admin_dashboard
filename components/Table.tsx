@@ -19,6 +19,7 @@ const Table: React.FC<CartProps> = ({
 
   const deleteCurrentCart = () => {
     const index = allCarts.indexOf(currentCart!);
+
     allCarts.splice(index, 1);
     setAllCarts!(allCarts);
     setCurrentCart!(allCarts[0]);
@@ -29,6 +30,7 @@ const Table: React.FC<CartProps> = ({
       <button className={styles.button} onClick={deleteCurrentCart}>
         Delete Cart
       </button>
+
       <button className={styles.button} onClick={() => setDisplayForm(true)}>
         Add Cart
       </button>
@@ -63,6 +65,7 @@ const Table: React.FC<CartProps> = ({
           })}
         </tbody>
       </table>
+
       {displayForm && <NewCartForm setDisplayForm={setDisplayForm} />}
     </div>
   );

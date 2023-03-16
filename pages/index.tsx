@@ -9,9 +9,11 @@ const Chart = dynamic(() => import("@/components/Chart"), { ssr: false });
 export default function Home({ data }: DataProps) {
   const [allCarts, setAllCarts] = useState(data.carts);
   const [currentCart, setCurrentCart] = useState(data.carts[0]);
+
   return (
     <div className={styles.container}>
       <Nav allCarts={allCarts} />
+
       <div className={styles.content}>
         <Table
           allCarts={allCarts}
@@ -19,6 +21,7 @@ export default function Home({ data }: DataProps) {
           currentCart={currentCart}
           setCurrentCart={setCurrentCart}
         />
+
         {currentCart && <Chart currentCart={currentCart} />}
       </div>
     </div>

@@ -10,6 +10,7 @@
     padding: 8px;
     text-align: left;
   }
+
   &:nth-child(even) {
     background-color: #dddddd;
   }
@@ -33,6 +34,7 @@
   cursor: pointer;
   padding: 0.5rem;
   width: 6rem;
+
   &:hover {
     background-color: white;
     color: rgb(68, 68, 255);
