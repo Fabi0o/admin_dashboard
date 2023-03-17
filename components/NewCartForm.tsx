@@ -1,11 +1,18 @@
 import styles from "@/styles/NewCartForm.module.scss";
+import { Cart } from "@/types/carts";
 import { useEffect, useState } from "react";
 
 interface Props {
   setDisplayForm: React.Dispatch<React.SetStateAction<boolean>>;
+  allCarts: Cart[];
+  setAllCarts: React.Dispatch<React.SetStateAction<Cart[]>>;
 }
 
-const NewCartForm: React.FC<Props> = ({ setDisplayForm }) => {
+const NewCartForm: React.FC<Props> = ({
+  setDisplayForm,
+  allCarts,
+  setAllCarts,
+}) => {
   const chart = document.querySelector(".recharts-wrapper");
   let container: HTMLElement;
 
@@ -26,6 +33,7 @@ const NewCartForm: React.FC<Props> = ({ setDisplayForm }) => {
   const addProducts = () => {
     const error = document.querySelector("#errorMess")!;
     const input = document.querySelector("#productID") as HTMLInputElement;
+
     if (!productID) {
       error.textContent = "Fill product ID field!";
       return;
@@ -48,6 +56,35 @@ const NewCartForm: React.FC<Props> = ({ setDisplayForm }) => {
     input.value = "";
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!products[0]) {
+      document.querySelector("#errorMess")!.textContent =
+        "You can't add empty cart!";
+      return;
+    }
+
+    fetch("https://dummyjson.com/carts/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: userID,
+        products: products.map((product) => {
+          return {
+            id: product,
+            quantity: 1,
+          };
+        }),
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        allCarts ? setAllCarts([...allCarts, data]) : setAllCarts([data]);
+        closeForm();
+      });
+  };
+
   return (
     <div
       className={styles.container}
@@ -55,7 +92,7 @@ const NewCartForm: React.FC<Props> = ({ setDisplayForm }) => {
         if (e.target == container) closeForm();
       }}
     >
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.closeButton}>
           <button onClick={closeForm}>X</button>
         </div>
@@ -71,6 +108,7 @@ const NewCartForm: React.FC<Props> = ({ setDisplayForm }) => {
 
               setUserID(Number(e.target.value));
             }}
+            required
           />
         </div>
 

@@ -49,14 +49,14 @@ const Table: React.FC<CartProps> = ({
           {allCarts!.map((cart) => {
             return (
               <tr
-                key={cart.id}
+                key={allCarts.indexOf(cart)}
                 id={`${allCarts.indexOf(cart)}`}
                 className={`${styles.bodyRow} ${
                   currentCart == cart ? styles.currentCart : ""
                 }`}
                 onClick={changeCurrentCart}
               >
-                <td>{cart.id}</td>
+                <td>{allCarts.indexOf(cart) + 1}</td>
                 <td>{cart.userId}</td>
                 <td>{cart.totalProducts}</td>
                 <td>{cart.total}$</td>
@@ -66,7 +66,13 @@ const Table: React.FC<CartProps> = ({
         </tbody>
       </table>
 
-      {displayForm && <NewCartForm setDisplayForm={setDisplayForm} />}
+      {displayForm && (
+        <NewCartForm
+          setDisplayForm={setDisplayForm}
+          allCarts={allCarts}
+          setAllCarts={setAllCarts!}
+        />
+      )}
     </div>
   );
 };
