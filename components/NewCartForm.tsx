@@ -65,7 +65,12 @@ const NewCartForm: React.FC<Props> = ({ setDisplayForm }) => {
           <input
             type="number"
             id="userID"
-            onChange={(e) => setUserID(Number(e.target.value))}
+            onChange={(e) => {
+              if (Number(e.target.value) < 0) e.target.value = "0";
+              if (Number(e.target.value) > 100) e.target.value = "100";
+
+              setUserID(Number(e.target.value));
+            }}
           />
         </div>
 
@@ -77,6 +82,7 @@ const NewCartForm: React.FC<Props> = ({ setDisplayForm }) => {
             onChange={(e) => {
               if (Number(e.target.value) < 0) e.target.value = "0";
               if (Number(e.target.value) > 100) e.target.value = "100";
+
               setProductID(Number(e.target.value));
             }}
           />
