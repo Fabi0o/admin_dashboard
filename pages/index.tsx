@@ -1,4 +1,4 @@
-import Nav from "@/components/Nav";
+import Header from "@/components/Header";
 import styles from "@/styles/Home.module.scss";
 import dynamic from "next/dynamic";
 import { useState } from "react";
@@ -12,7 +12,7 @@ export default function Home({ data }: DataProps) {
 
   return (
     <div className={styles.container}>
-      <Nav allCarts={allCarts} />
+      <Header allCarts={allCarts} />
 
       <div className={styles.content}>
         <Table
