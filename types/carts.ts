@@ -11,6 +11,7 @@ interface Product {
 interface Cart {
   discountedTotal: number;
   id: number;
+  isDeleted?: boolean;
   products: Product[];
   total: number;
   totalProducts: number;

@@ -1,5 +1,5 @@
 import styles from "@/styles/Table.module.scss";
-import { CartProps } from "@/types/carts";
+import { Cart, CartProps } from "@/types/carts";
 import { useState } from "react";
 import NewCartForm from "./NewCartForm";
 
@@ -20,9 +20,22 @@ const Table: React.FC<CartProps> = ({
   const deleteCurrentCart = () => {
     const index = allCarts.indexOf(currentCart!);
 
-    allCarts.splice(index, 1);
-    setAllCarts!(allCarts);
-    setCurrentCart!(allCarts[0]);
+    if (currentCart!.id > 20) {
+      allCarts[index].isDeleted = true;
+      setAllCarts!(allCarts);
+      setCurrentCart!(allCarts.find((cart) => !cart.isDeleted)!);
+      return;
+    }
+
+    fetch(`https://dummyjson.com/carts/${currentCart?.id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data: Cart) => {
+        allCarts[index] = data;
+        setAllCarts!(allCarts);
+        setCurrentCart!(allCarts.find((cart) => !cart.isDeleted)!);
+      });
   };
 
   return (
@@ -47,6 +60,7 @@ const Table: React.FC<CartProps> = ({
 
         <tbody>
           {allCarts!.map((cart) => {
+            if (cart.isDeleted) return;
             return (
               <tr
                 key={allCarts.indexOf(cart)}
@@ -56,7 +70,7 @@ const Table: React.FC<CartProps> = ({
                 }`}
                 onClick={changeCurrentCart}
               >
-                <td>{allCarts.indexOf(cart) + 1}</td>
+                <td>{cart.id}</td>
                 <td>{cart.userId}</td>
                 <td>{cart.totalProducts}</td>
                 <td>{cart.total}$</td>
