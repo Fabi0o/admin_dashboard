@@ -81,7 +81,6 @@ const NewCartForm: React.FC<Props> = ({
       .then((res) => res.json())
       .then((data) => {
         data.id = allCarts.length + 1;
-        console.log(data);
         allCarts ? setAllCarts([...allCarts, data]) : setAllCarts([data]);
         closeForm();
       });
